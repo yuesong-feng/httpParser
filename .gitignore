@@ -1,0 +1,5 @@
+.vscode/
+main.cpp
+makefile
+http.txt
+*.out
