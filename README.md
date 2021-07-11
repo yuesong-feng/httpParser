@@ -15,12 +15,13 @@ read(client_sockfd, buf, sizeof(buf));    //从socket读取到buf
 ···
 ···
 HTTP_Parser http_package(buf);    //将buf构造成一个HTTP_Parser类
-//此时http_package中包含了一个std::unordered_map<std::string, std::string>的字典，保存http报文字段信息
+//此时http_package中包含了一个std::unordered_map<std::string, std::string>的字典，保存http报文字段信息。字典中的所有key大小写不敏感，但都按照标准规则命名（单词首字符大写，单词之间用'-'连接）。
 ···
 ···
-//返回字段的值(std::string类型)，如找不到则返回空std::string
-http_package["Content-Type"];
-http_package["User-Agent"];
+//查找字段并返回值(std::string类型)，不区分字段中的大小写，如找不到则返回空std::string
+http_package["content-Type"];
+http_package["user-agent"];
+http_package["Accept-encoding"];
 http_package["body"];
 ···
 ···
@@ -31,15 +32,15 @@ http_package.show();    //显示http报文，会直接输出到控制台
         "time": "Wed, 21 Oct 2015 18:27:50 GMT"
     }
 
-    content-length: 69
-    accept-encoding: gzip, deflate
+    Content-Length: 69
+    Accept-Encoding: gzip, deflate
     Host: 127.0.0.1:1234
     method: POST
-    protocol: HTTP/1.1
+    version: HTTP/1.1
     path: /
-    content-type: application/json
+    Content-Type: application/json
     Connection: close
-    user-agent: vscode-restclient
+    User-Agent: vscode-restclient
 */
 ```
 
@@ -51,4 +52,4 @@ http_package.show();    //显示http报文，会直接输出到控制台
 
 `http_package.show()` 显示 http 报文，会直接输出到控制台
 
-`http_package[std::string]` 返回字段的值(std::string 类型)，如找不到则返回空 std::string
+`http_package[std::string]` 查找字段并返回值(std::string 类型)，不区分字段中的大小写，如找不到则返回空 std::string
