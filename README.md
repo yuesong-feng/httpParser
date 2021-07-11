@@ -4,7 +4,17 @@ C++版本的 HTTP 协议解析器，可自动识别 request 与 response 请求
 
 使用了 C++ 11 标准，编译时需要添加`-std=c++11`
 
-### usage example
+## api
+
+`HTTP_Parser http_package()` 构造一个空 http 报文类
+
+`HTTP_Parser http_package(char buf*)` 解析存储在数组 buf 里的 http 报文
+
+`http_package.show()` 显示 http 报文，会直接输出到控制台
+
+`http_package[std::string]` 查找字段并返回值(std::string 类型)，不区分字段中的大小写，如找不到则返回空 std::string
+
+## usage example
 
 ```c++
 #include "HTTP_Parser.h"    //使用前引入头文件
@@ -43,13 +53,3 @@ http_package.show();    //显示http报文，会直接输出到控制台
     User-Agent: vscode-restclient
 */
 ```
-
-### api
-
-`HTTP_Parser http_package()` 构造一个空 http 报文类
-
-`HTTP_Parser http_package(char buf*)` 解析存储在数组 buf 里的 http 报文
-
-`http_package.show()` 显示 http 报文，会直接输出到控制台
-
-`http_package[std::string]` 查找字段并返回值(std::string 类型)，不区分字段中的大小写，如找不到则返回空 std::string
