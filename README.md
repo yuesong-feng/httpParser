@@ -12,7 +12,7 @@ C++版本的 HTTP 协议解析器，可自动识别 request 与 response 请求
 
 `http_package.show()` 显示 http 报文，会直接输出到控制台
 
-`http_package[std::string]` 查找字段并返回值(std::string 类型)，不区分字段中的大小写，如找不到则返回空 std::string
+`http_package[std::string str]` 查找字段并返回值(std::string 类型)，不区分字段中的大小写，如找不到则返回空 std::string
 
 ## usage example
 
